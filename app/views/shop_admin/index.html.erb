@@ -1,0 +1,20 @@
+<h1>Shop Administration</h1>
+
+<% @categories.each do |category| %>
+    <h2><%= category.name %></h2>
+    <em><%= link_to 'Edit', edit_category_path(category) %> | <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></em>
+    <ul>
+    <% category.products.each do |product| %>
+        <li>
+            <strong><%= product.name %>(#<%= product.serial %>)</strong>
+            <em>$<%= product.price %></em>
+            <%= product.description %>
+
+            <em><%= link_to 'Edit', edit_product_path(product) %> | <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></em>
+        </li>
+    <% end %>
+        <li><%= link_to 'New Product', new_product_path %></li>
+    </ul>
+<% end %>
+
+<%= link_to 'New Category', new_category_path %>
